@@ -129,7 +129,7 @@ function locate(){
  if(window.top!==window.self){locationMessage('This page is embedded. Open Skyward directly in a Safari tab to avoid iframe restrictions.');return}
  try{if(document.permissionsPolicy?.allowsFeature&&!document.permissionsPolicy.allowsFeature('geolocation')){locationMessage('Permissions Policy blocks geolocation.');return}}
  catch(e){}
- // No automatic requests: keep the native Safari permission prompt tied to a direct tap.
+ // A single startup request is attempted; the same function also supports explicit retries.
  const request=++locationRequest;locating=true;gpsBtn.disabled=true;gpsBtn.textContent='Locating…';
  $('status').textContent='Requesting a fresh position from Safari…';
  try{navigator.geolocation.getCurrentPosition(p=>{
@@ -157,6 +157,9 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
  locationMessage('You returned to Skyward. Tap Get current location for a fresh travel position.');
 }});
 update();$('locationPanel').hidden=false;
-locationMessage('Tap Get current location to request GPS access. No default location is used.');
+locationMessage('Finding your current location… You can also choose coordinates manually.');
+// Start once per page load, after the UI and event handlers have been initialized.
+// Safari may refuse an automatic request depending on permission state; manual retry stays available.
+locate();
 setInterval(()=>{if(!manual)toNow()},60000)})();
 </script></body></html>
