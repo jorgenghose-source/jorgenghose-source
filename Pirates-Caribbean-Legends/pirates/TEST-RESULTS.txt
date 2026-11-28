@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: seed reproducibility
+ok 1 - seed reproducibility
+  ---
+  duration_ms: 1.260851
+  type: 'test'
+  ...
+# Subtest: wind efficiency
+ok 2 - wind efficiency
+  ---
+  duration_ms: 0.399816
+  type: 'test'
+  ...
+# Subtest: land and sea collision classification
+ok 3 - land and sea collision classification
+  ---
+  duration_ms: 0.368087
+  type: 'test'
+  ...
+# Subtest: 46 distinct ports and 14 classes
+ok 4 - 46 distinct ports and 14 classes
+  ---
+  duration_ms: 0.218006
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 71.566672
