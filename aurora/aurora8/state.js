@@ -1,0 +1,7 @@
+export const schema={};
+function p(id,name,min,max,def,unit='',scale='linear',mod=true){schema[id]={id,name,min,max,def,unit,scale,mod,smoothing:scale==='discrete'?0:0.012};}
+for(let i=1;i<=2;i++){let s='o'+i;p(s+'wave','Wave',0,5,i===1?2:4,'','discrete',false);p(s+'oct','Octave',-2,2,0,'oct','discrete',false);p(s+'coarse','Coarse',-24,24,0,'st','discrete');p(s+'fine','Fine',-100,100,i===2?7:0,'ct');p(s+'pw','Pulse width',.05,.95,.5);p(s+'level','Level',0,1,i===1?.7:.35);p(s+'track','Key tracking',0,1,1);p(s+'reset','Phase reset',0,1,0,'','discrete',false);}
+p('noise','Noise',0,1,0);p('pink','Pink noise',0,1,0,'','discrete',false);p('balance','Balance',-1,1,0);p('drive','Mixer drive',0,1,.1);p('hpf','High pass',10,5000,10,'Hz','log');p('cutoff','Cutoff',20,20000,3200,'Hz','log');p('res','Resonance',0,1,.15);p('slope','Slope',0,1,1,'','discrete',false);p('fd','Filter drive',0,1,.1);p('env1','Envelope 1',-8,8,2,'oct');p('env2','Envelope 2',-8,8,0,'oct');p('keytrack','Key tracking',0,2,.5);p('vel','Velocity to filter',-4,4,.5,'oct');
+for(let i=1;i<=2;i++){p('a'+i,'Attack',.0005,20,.015,'s','log');p('d'+i,'Decay',.001,20,.4,'s','log');p('s'+i,'Sustain',0,1,.7);p('r'+i,'Release',.001,30,.5,'s','log');}
+p('voices','Voices',4,16,8,'','discrete',false);p('spread','Voice spread',0,1,.6);p('width','Stereo width',0,2,1);p('volume','Master',0,1,.65);p('mono','Mono monitor',0,1,0,'','discrete',false);p('bend','Pitch bend',-2,2,0,'st');
+export const defaults=Object.fromEntries(Object.values(schema).map(x=>[x.id,x.def]));

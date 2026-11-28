@@ -1,0 +1,2 @@
+44100 Hz: polyphonic nonzero finite output, panic silence PASS; peak 0.185
+48000 Hz: polyphonic nonzero finite output, panic silence PASS; peak 0.186
